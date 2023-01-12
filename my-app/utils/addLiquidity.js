@@ -38,6 +38,10 @@ export const addLiquidity = async (
             addCDAmountWei.toString()
         );
         await tx.wait();
+        // After the contract has the approval, add the ether and cd tokens in the liquidity 
+        tx = await exchangeContract.addLiquidity(addCDAmountWei, {
+            value: addEtherAmountWei,
+        });
     } catch (err) {
         console.error(err);
     }
